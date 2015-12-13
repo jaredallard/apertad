@@ -15,6 +15,7 @@ var express = require('express'),
     uuid    = require('node-uuid');
 
 // config
+
 var cfg;
 if(fs.existsSync('./config/config.json')) {
   cfg = require('./config/config.json') // TODO: Check for nexe embed before hand.

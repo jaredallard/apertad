@@ -12,7 +12,7 @@ var spawn   = require('child_process').spawn,
 var apikey = process.env.TEST_APIKEY;
 var ocapikey = process.env.OC_APIKEY;
 var privpass = process.env.TEST_PRIVPASS;
-var privencoded = process.env.privencoded;
+var privencoded = process.env.TEST_PRIVENCODED;
 
 var URL = 'http://127.0.0.1:8080/v1';
 
