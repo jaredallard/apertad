@@ -7,7 +7,7 @@
   "server": {
     "use_https": false,
     "use_http": true,
-    "listen_http": "80",
+    "listen_http": "8080",
     "listen_https": "443",
     "ssl": {
       "cert": "",

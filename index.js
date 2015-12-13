@@ -15,14 +15,27 @@ var express = require('express'),
     uuid    = require('node-uuid');
 
 // config
-var cfg = require('./config/config.json') // TODO: Check for nexe embed before hand.
+var cfg;
+if(fs.existsSync('./config/config.json')) {
+  cfg = require('./config/config.json') // TODO: Check for nexe embed before hand.
+} else {
+  if(!process.env.TEST_CONFIG) {
+    console.error('in test mode, but no config supplied (or you forgot to copy config.example.json to config.json)');
+    process.exit(1);
+  }
+
+  // override the config object for tests
+  cfg = JSON.parse(new Buffer(process.env.TEST_CONFIG, 'base64').toString('ascii'));
+
+  console.log('ready for tests')
+}
 
 // express addons
 var bodyP  = require('body-parser'),
     morgan = require('morgan');
 
 // db init
-var db = oc(cfg.oc.api_key, cfg.oc.server)
+var db = oc(cfg.oc.api_key || processs.env.OC_APIKEY, cfg.oc.server)
 db.ping()
 .then(function () {
   debug('oio db service is VALID')
