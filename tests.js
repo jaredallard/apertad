@@ -46,7 +46,8 @@ console.log('tests: spawning server');
 
 var srv = spawn('node', ['index.js'], {
   env: {
-    TEST_CONFIG: new Buffer(JSON.stringify(cfg)).toString('base64')
+    TEST_CONFIG: new Buffer(JSON.stringify(cfg)).toString('base64'),
+    PATH: process.env.PATH
   }
 });
 
